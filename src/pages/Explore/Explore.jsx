@@ -1,5 +1,5 @@
 import "./Explore.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useCallback, useMemo } from "react";
 import { AppContext } from "../../context/AppContext.jsx";
 import DisplayCategory from "../../components/DisplayCategory/DisplayCategory.jsx";
 import DisplayItems from "../../components/DisplayItems/DisplayItems.jsx";
@@ -10,30 +10,60 @@ import CartSummary from "../../components/CartSummary/CartSummary.jsx";
 const Explore = () => {
   const { categories } = useContext(AppContext);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [customerName, setCustomerName] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [customerDetails, setCustomerDetails] = useState({
+    customerName: "",
+    mobileNumber: "",
+  });
+
+  // Memoized category selection handler
+  const handleCategorySelect = useCallback((category) => {
+    setSelectedCategory(category);
+  }, []);
+
+  // Memoized customer details update
+  const updateCustomerDetails = useCallback((field, value) => {
+    setCustomerDetails((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  }, []);
+
+  // Memoized filtered categories
+  const filteredCategories = useMemo(() => {
+    return categories.filter((category) =>
+      category.name.toLowerCase().includes(selectedCategory.toLowerCase())
+    );
+  }, [categories, selectedCategory]);
+
   return (
     <div className="explore-container text-light">
       <div className="left-column">
         <div className="first-row">
           <DisplayCategory
             selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            categories={categories}
+            setSelectedCategory={handleCategorySelect}
+            categories={filteredCategories}
           />
         </div>
         <hr className="horizontal-line" />
         <div className="second-row">
-          <DisplayItems selectedCategory={selectedCategory} />
+          <DisplayItems
+            selectedCategory={selectedCategory}
+            key={selectedCategory} // Force re-render on category change
+          />
         </div>
       </div>
       <div className="right-column">
         <div className="customer-form-container">
           <CustomerForm
-            customerName={customerName}
-            mobileNumber={mobileNumber}
-            setMobileNumber={setMobileNumber}
-            setCustomerName={setCustomerName}
+            customerName={customerDetails.customerName}
+            mobileNumber={customerDetails.mobileNumber}
+            setMobileNumber={(value) =>
+              updateCustomerDetails("mobileNumber", value)
+            }
+            setCustomerName={(value) =>
+              updateCustomerDetails("customerName", value)
+            }
           />
         </div>
         <hr className="my-3 text-light" />
@@ -42,10 +72,14 @@ const Explore = () => {
         </div>
         <div className="cart-summary-container">
           <CartSummary
-            customerName={customerName}
-            mobileNumber={mobileNumber}
-            setMobileNumber={setMobileNumber}
-            setCustomerName={setCustomerName}
+            customerName={customerDetails.customerName}
+            mobileNumber={customerDetails.mobileNumber}
+            setMobileNumber={(value) =>
+              updateCustomerDetails("mobileNumber", value)
+            }
+            setCustomerName={(value) =>
+              updateCustomerDetails("customerName", value)
+            }
           />
         </div>
       </div>
