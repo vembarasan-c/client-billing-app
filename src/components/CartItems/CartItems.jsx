@@ -1,47 +1,60 @@
-import './CartItems.css';
-import {useContext} from "react";
-import {AppContext} from "../../context/AppContext.jsx";
+import "./CartItems.css";
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext.jsx";
+import { Minus, Plus, Trash2 } from "lucide-react";
 
 const CartItems = () => {
-    const {cartItems, removeFromCart, updateQuantity} = useContext(AppContext);
-    return (
-        <div className="p-3 h-100 overflow-y-auto">
-            {cartItems.length === 0 ? (
-                <p className="text-light">
-                    Your cart is empty.
-                </p>
-            ) : (
-                <div className="cart-items-list">
-                    {cartItems.map((item, index) => (
-                        <div key={index} className="cart-item mb-3 p-3 bg-dark rounded">
-                            <div className="d-flex justify-content-between align-items-center mb-2">
-                                <h6 className="mb-0 text-light">{item.name}</h6>
-                                <p className="mb-0 text-light">
-                                    ₹{(item.price * item.quantity).toFixed(2)}
-                                </p>
-                            </div>
-                            <div className="d-flex justify-content-between align-item-center">
-                                <div className="d-flex align-items center gap-2">
-                                    <button className="btn btn-danger btn-sm"
-                                        onClick={() => updateQuantity(item.itemId, item.quantity - 1)}
-                                        disabled={item.quantity === 1}>
-                                        <i className="bi bi-dash"></i>
-                                    </button>
-                                    <span className="text-light">{item.quantity}</span>
-                                    <button className="btn btn-primary btn-sm" onClick={() => updateQuantity(item.itemId, item.quantity + 1)}>
-                                        <i className="bi bi-plus"></i>
-                                    </button>
-                                </div>
-                                <button className="btn btn-danger btn-sm" style={{width: "auto"}} onClick={() => removeFromCart(item.itemId)}>
-                                    <i className="bi bi-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+  const { cartItems, removeFromCart, updateQuantity } = useContext(AppContext);
+  return (
+    <div className="cart-items-container">
+      {cartItems.length === 0 ? (
+        <div className="cart-items-empty">
+          <p>Your cart is empty</p>
         </div>
-    )
-}
+      ) : (
+        <div className="cart-items-list">
+          {cartItems.map((item, index) => (
+            <div key={index} className="cart-item">
+              <div className="cart-item-header">
+                <h6 className="cart-item-name">{item.name}</h6>
+                <p className="cart-item-price">
+                  ₹{(item.price * item.quantity).toFixed(2)}
+                </p>
+              </div>
+              <div className="cart-item-footer">
+                <div className="cart-item-quantity-controls">
+                  <button
+                    className="cart-quantity-btn"
+                    onClick={() =>
+                      updateQuantity(item.itemId, item.quantity - 1)
+                    }
+                    disabled={item.quantity === 1}
+                  >
+                    <Minus size={16} />
+                  </button>
+                  <span className="cart-quantity-value">{item.quantity}</span>
+                  <button
+                    className="cart-quantity-btn"
+                    onClick={() =>
+                      updateQuantity(item.itemId, item.quantity + 1)
+                    }
+                  >
+                    <Plus size={16} />
+                  </button>
+                </div>
+                <button
+                  className="cart-remove-btn"
+                  onClick={() => removeFromCart(item.itemId)}
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default CartItems;

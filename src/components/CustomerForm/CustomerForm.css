@@ -1,0 +1,53 @@
+.customer-form-container {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px; /* Slightly smaller radius */
+  padding: 15px; /* Reduced from 20px */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+  transition: all 0.3s ease;
+}
+
+.customer-form-container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Lighter hover shadow */
+  border-color: #3498db;
+}
+
+.customer-form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Reduced from 15px */
+}
+
+.customer-form-label {
+  flex: 0 0 30%;
+  color: #333333;
+  font-weight: 500;
+  margin-right: 10px; /* Reduced from 15px */
+  font-size: 13px; /* Reduced text size */
+}
+
+.customer-form-input {
+  flex: 1;
+  padding: 8px; /* Reduced from 10px */
+  border: 1px solid #e0e0e0;
+  border-radius: 6px; /* Slightly smaller radius */
+  background-color: #f9f9f9;
+  color: #333333;
+  transition: all 0.3s ease;
+  font-size: 13px; /* Reduced text size */
+}
+
+.customer-form-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 1px rgba(52, 152, 219, 0.2); /* Lighter focus shadow */
+}
+
+.customer-form-input::placeholder {
+  color: #666666;
+  font-size: 12px; /* Reduced placeholder text size */
+}
+
+.customer-form-input:invalid {
+  border-color: #e74c3c;
+}

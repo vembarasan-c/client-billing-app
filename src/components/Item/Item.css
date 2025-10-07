@@ -1,12 +1,36 @@
+.item-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
 .item-card:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-color: #3498db;
 }
 
 .item-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    border: 3px solid white;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  border: 2px solid #f4f4f4;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.item-image:hover {
+  transform: scale(1.05);
+}
+
+.item-price {
+  color: #3498db;
+  font-weight: 600;
+}
+
+.item-name {
+  color: #333333;
+  font-weight: 500;
 }

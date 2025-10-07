@@ -1,0 +1,99 @@
+.cart-summary-container {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px; /* Slightly smaller radius */
+  padding: 12px; /* Reduced from 15px */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+  transition: all 0.3s ease;
+  font-size: 13px; /* Reduced overall text size */
+}
+
+.cart-summary-container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Lighter hover shadow */
+  border-color: #3498db;
+}
+
+.cart-summary-details {
+  margin-bottom: 10px; /* Reduced from 15px */
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px; /* Reduced from 8px */
+  color: #333333;
+  font-size: 13px; /* Reduced text size */
+}
+
+.cart-summary-label {
+  font-weight: 500;
+  color: #666666;
+  font-size: 12px; /* Reduced text size */
+}
+
+.cart-summary-value {
+  font-weight: 600;
+  color: #3498db;
+  font-size: 13px; /* Reduced text size */
+}
+
+.cart-summary-total {
+  font-weight: 700;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 8px; /* Reduced from 10px */
+  font-size: 14px; /* Slightly larger for emphasis */
+}
+
+.cart-summary-buttons {
+  display: flex;
+  gap: 8px; /* Reduced from 10px */
+}
+
+.cart-summary-btn {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; /* Reduced from 8px */
+  padding: 8px; /* Reduced from 10px */
+  border: none;
+  border-radius: 6px; /* Slightly smaller radius */
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  font-size: 12px; /* Reduced text size */
+}
+
+.cart-summary-btn span {
+  margin-left: 4px; /* Reduced from 6px */
+}
+
+.cart-summary-btn-cash {
+  background-color: #2ecc71;
+}
+
+.cart-summary-btn-cash:hover {
+  background-color: #27ae60;
+}
+
+.cart-summary-btn-upi {
+  background-color: #3498db;
+}
+
+.cart-summary-btn-upi:hover {
+  background-color: #2980b9;
+}
+
+.cart-summary-btn-place-order {
+  background-color: #f39c12;
+}
+
+.cart-summary-btn-place-order:hover {
+  background-color: #d35400;
+}
+
+.cart-summary-btn:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}

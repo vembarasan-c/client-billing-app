@@ -6,6 +6,7 @@ import DisplayItems from "../../components/DisplayItems/DisplayItems.jsx";
 import CustomerForm from "../../components/CustomerForm/CustomerForm.jsx";
 import CartItems from "../../components/CartItems/CartItems.jsx";
 import CartSummary from "../../components/CartSummary/CartSummary.jsx";
+import { ShoppingCart, Users, Grid, List } from "lucide-react";
 
 const Explore = () => {
   const { categories } = useContext(AppContext);
@@ -39,6 +40,10 @@ const Explore = () => {
     <div className="explore-container text-light">
       <div className="left-column">
         <div className="first-row">
+          <div className="section-header">
+            <Grid size={20} />
+            <h4>Categories</h4>
+          </div>
           <DisplayCategory
             selectedCategory={selectedCategory}
             setSelectedCategory={handleCategorySelect}
@@ -47,6 +52,10 @@ const Explore = () => {
         </div>
         <hr className="horizontal-line" />
         <div className="second-row">
+          <div className="section-header">
+            <ShoppingCart size={20} />
+            <h4>Items</h4>
+          </div>
           <DisplayItems
             selectedCategory={selectedCategory}
             key={selectedCategory} // Force re-render on category change
@@ -55,6 +64,10 @@ const Explore = () => {
       </div>
       <div className="right-column">
         <div className="customer-form-container">
+          <div className="section-header">
+            <Users size={20} />
+            <h4>Customer Details</h4>
+          </div>
           <CustomerForm
             customerName={customerDetails.customerName}
             mobileNumber={customerDetails.mobileNumber}
@@ -68,9 +81,18 @@ const Explore = () => {
         </div>
         <hr className="my-3 text-light" />
         <div className="cart-items-container">
+          <div className="section-header">
+            <List
+             size={20} />
+            <h4>Cart Items</h4>
+          </div>
           <CartItems />
         </div>
         <div className="cart-summary-container">
+          <div className="section-header">
+            <ShoppingCart size={20} />
+            <h4>Cart Summary</h4>
+          </div>
           <CartSummary
             customerName={customerDetails.customerName}
             mobileNumber={customerDetails.mobileNumber}
